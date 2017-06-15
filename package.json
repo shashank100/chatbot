@@ -1,0 +1,23 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "express on node server for chat bot using api and fb messenger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shashank100/chatbot.git"
+  },
+  "author": "Shashank Kaushik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shashank100/chatbot/issues"
+  },
+  "homepage": "https://github.com/shashank100/chatbot#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
+}
