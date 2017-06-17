@@ -30,7 +30,7 @@ function processMessage(event) {
 
 app.post("/webhook", function (req, res) {
   // checking if it is a page subscription
-  console.log(req)
+  console.log(req.body)
   if (req.body.object === "page") {
     // Iterate over each entry
     // There may be multiple batched entries
