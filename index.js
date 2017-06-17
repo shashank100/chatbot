@@ -23,8 +23,8 @@ processMessage(event) {
         .get("https://api.api.ai/api/query?v=20150910&lang=en&sessionId=mySession&query=" + payload)
         .set("Authorization", "Bearer " + process.env.API_CLIENT_TOKEN)
         .end(function(err, res) {
-            console.log(data.result.parameters.date);
-            console.log(data.result.parameters.SunSigns);
+            console.log(res.result.parameters.date);
+            console.log(res.result.parameters.SunSigns);
         });
 }
 
