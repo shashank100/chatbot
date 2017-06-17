@@ -34,7 +34,7 @@ function getHoroscope(event) {
         horoscopeDate = "yesterday"
     }
     superagent
-        .get("http://http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
+        .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
             sendHoroscope(event, res.body.horoscope);
         }.bind(this));
