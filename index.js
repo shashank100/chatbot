@@ -7,11 +7,40 @@ app.get('/', function (req, res) {
 });
 
 app.get("/webhook", function (req, res) {
-  if (req.query["hub.verify_token"] === "my-chat-bot") {
-  //if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
+  if (req.query["hub.verify_token"] === process.env.VERIFY_TOKEN) {
     res.status(200).send(req.query["hub.challenge"]);
   } else {
     res.sendStatus(403);
+  }
+});
+
+processMessage(event) {
+    var senderId = event.sender.id,
+        payload = encodeURI(event.message.text);
+
+    superagent
+        .get("https://api.api.ai/api/query?v=20150910&lang=en&sessionId=mySession&query=" + payload)
+        .set("Authorization", "Bearer " + process.env.API_CLIENT_TOKEN)
+        .end(function(err, res) {
+            console.log(data.result.parameters.date);
+            console.log(data.result.parameters.SunSigns);
+        });
+}
+
+app.post("/webhook", function (req, res) {
+  // checking if it is a page subscription
+  if (req.body.object === "page") {
+    // Iterate over each entry
+    // There may be multiple batched entries
+    req.body.entry.forEach(function(entry) {
+      // Iterate over each messaging event
+      entry.messaging.forEach(function(event) {
+        if (event.message) {
+          processMessage(event);
+        }
+      });
+    });
+    res.sendStatus(200);
   }
 });
 

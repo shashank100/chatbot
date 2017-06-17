@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shashank100/chatbot#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "superagent": "^3.5.2"
   }
 }
