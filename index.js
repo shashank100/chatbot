@@ -15,7 +15,7 @@ app.get("/webhook", function (req, res) {
   }
 });
 
-processMessage(event) {
+function processMessage(event) {
     var senderId = event.sender.id,
         payload = encodeURI(event.message.text);
 
