@@ -11,6 +11,7 @@ app.use(bodyParser.json())
 
 
 function sendHoroscope(event, horoscope) {
+    console.log(event.sender.id);
     superagent
         .post("https://graph.facebook.com/v2.9/me/messages?access_token=" + process.env.PAGE_ACCESS_TOKEN)
         .send({
