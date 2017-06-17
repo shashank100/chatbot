@@ -19,7 +19,7 @@ function sendHoroscope(event, horoscope) {
         })
         .end(function(err, res) {
             if(err) {
-                console.log("Error sending message: " + response.error);
+                console.log("Error sending message: " + res.error);
             }
         });
 }
