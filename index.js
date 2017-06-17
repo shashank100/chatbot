@@ -37,8 +37,7 @@ function getHoroscope(event) {
         .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
             var text = JSON.parse(res.text);
-            console.log(text.horoscope);
-            sendHoroscope(event, res.text.horoscope);
+            sendHoroscope(event, text.horoscope);
         }.bind(this));
 }
 
