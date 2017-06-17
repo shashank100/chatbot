@@ -36,6 +36,7 @@ function getHoroscope(event) {
     superagent
         .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
+            console.log(res.body);
             sendHoroscope(event, res.body.horoscope);
         }.bind(this));
 }
