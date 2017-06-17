@@ -30,6 +30,8 @@ function processMessage(event) {
 }
 
 app.post("/webhook", function (req, res) {
+console.log(process.env.VERIFY_TOKEN);
+
   // checking if it is a page subscription
   console.log(req.body)
   if (req.body.object === "page") {
