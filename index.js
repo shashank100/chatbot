@@ -33,6 +33,7 @@ function getHoroscope(event) {
     } else if (date > dateToday.getUTCDate()) {
         horoscopeDate = "yesterday"
     }
+    console.log(horoscopeDate);
     superagent
         .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
