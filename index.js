@@ -11,12 +11,11 @@ app.use(bodyParser.json())
 
 
 function sendHoroscope(event, horoscope) {
-    console.log(event.sender.id);
     superagent
         .post("https://graph.facebook.com/v2.9/me/messages?access_token=" + process.env.PAGE_ACCESS_TOKEN)
         .send({
           recipient: {id: event.sender.id},
-          message: horoscope,
+          message: {text: horoscope},
         })
         .end(function(err, res) {
             if(err) {
