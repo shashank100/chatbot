@@ -15,7 +15,7 @@ function sendHoroscope(event, horoscope) {
         .post("https://graph.facebook.com/v2.6/me/messages?access_token=" + process.env.PAGE_ACCESS_TOKEN)
         .send({
           recipient: {id: event.sender.id},
-          message: message,
+          message: horoscope,
         })
         .end(function(err, res) {
             if(err) {
