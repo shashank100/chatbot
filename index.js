@@ -50,7 +50,7 @@ function processMessage(event) {
         .end(function(err, res) {
             sign = res.body.result.parameters.SunSigns;
             date = Number(res.body.result.parameters.SunSigns.split("-")[2]);
-
+            console.log(sign, date);
             getHoroscope(event);
         }.bind(this));
 }
