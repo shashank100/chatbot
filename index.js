@@ -2,19 +2,11 @@ var express = require("express");
 var app = express();
 var port = process.env.PORT || 3000;
 var superagent = require("superagent");
+var bodyParser = require("body-parser");
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-});
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-app.get("/webhook", function (req, res) {
-  if (req.query["hub.verify_token"] === process.env.VERIFY_TOKEN) {
-    console.log("in here");
-    res.status(200).send(req.query["hub.challenge"]);
-  } else {
-    res.sendStatus(403);
-  }
-});
 
 function processMessage(event) {
     var senderId = event.sender.id,
@@ -29,11 +21,16 @@ function processMessage(event) {
         });
 }
 
-app.post("/webhook", function (req, res) {
-console.log(process.env.VERIFY_TOKEN);
+app.get("/webhook", function (req, res) {
+  if (req.query["hub.verify_token"] === process.env.VERIFY_TOKEN) {
+    res.status(200).send(req.query["hub.challenge"]);
+  } else {
+    res.sendStatus(403);
+  }
+});
 
+app.post("/webhook", function (req, res) {
   // checking if it is a page subscription
-  console.log(req.body)
   if (req.body.object === "page") {
     // Iterate over each entry
     // There may be multiple batched entries
