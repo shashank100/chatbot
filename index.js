@@ -25,7 +25,6 @@ function sendHoroscope(event, horoscope) {
 }
 
 function getHoroscope(event) {
-    console.log(sign)
     var horoscopeDate = "today";
     var dateToday = new Date();
     if(date > dateToday.getUTCDate()) {
@@ -37,8 +36,7 @@ function getHoroscope(event) {
     superagent
         .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
-            console.log(err, res.text);
-            sendHoroscope(event, res.body.horoscope);
+            sendHoroscope(event, res.text.horoscope);
         }.bind(this));
 }
 
