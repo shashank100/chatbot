@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
 
 app.get("/webhook", function (req, res) {
   if (req.query["hub.verify_token"] === process.env.VERIFY_TOKEN) {
+    console.log("in here");
     res.status(200).send(req.query["hub.challenge"]);
   } else {
     res.sendStatus(403);
