@@ -1,9 +1,9 @@
 var express = require("express");
 var app = express();
 var port = process.env.PORT || 3000;
-var superagent = require("superagent");
 var bodyParser = require("body-parser");
-var sign = "";
+var superagent = require("superagent");
+var sign = "leo";
 var date = [];
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -32,7 +32,6 @@ function getHoroscope(event) {
     } else if (date > dateToday.getUTCDate()) {
         horoscopeDate = "yesterday"
     }
-    console.log(horoscopeDate);
     superagent
         .get("http://sandipbgt.com/theastrologer/api/horoscope/" + sign + "/" + horoscopeDate)
         .end(function(err, res) {
@@ -51,7 +50,6 @@ function processMessage(event) {
         .end(function(err, res) {
             sign = res.body.result.parameters.SunSigns;
             date = Number(res.body.result.parameters.SunSigns.split("-")[2]);
-            console.log(sign, date);
             getHoroscope(event);
         }.bind(this));
 }
